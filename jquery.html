@@ -16,38 +16,61 @@
     <hr>
     <div class="container">
         <h1>input focus color change</h1>
-        <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">University Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">Only your Email from your university is accepted </div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Your password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check Check Check Check</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-          </form>
+        <label>username</label>
+        <input type="text" id="username" class="form-control">
+        <button id="btn">show</button>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
+    <div class="container">
+      <select name="courses" id="courses" class="form-control w-25">
+        <option value="all">all</option>
+        <option value="but">buisness</option>
+        <option value="computer">computer</option>
+      </select>
+
+      <br>
+
+      <div class="row">
+        <div id="bus-1" class="col col-3 p-5 bg-primary border border-danger fs-3">business 1</div>
+        <div id="bus-2" class="col col-3 p-5 bg-danger fs-3">business 2</div>
+        <div id="cps-1" class="col col-3 p-5 bg-info fs-3">computer 1</div>
+        <div id="cps2" class="col col-3 p-5 bg-warning fs-3">computer 2</div>
+      </div>
+    </div>
     <script>
         $(document).ready(function(){
             $("p").click(function(){
                 $(this).hide();
         });
         
-        $(input).focus(function(){
+        $("#username").focus(function(){
             $(this).css("background-color","yellow");
         });    
+
+        $("#btn").click(function(){
+          alert($("#username").val());
+        });
+
+        $("#courses").change(function(){
+          var course = $(this).val();
+
+          if(course=="all"){
+            $("#bus-1").show();
+            $("#bus-2").show();
+            $("#cps-1").show();
+            $("#cps-2").show();
+          }
+          if(course=="bus"){
+            $("#bus-1").show();
+            $("#bus-2").show();
+            
+          }
+        })
     });
 
         
     </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
