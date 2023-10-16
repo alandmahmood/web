@@ -34,19 +34,47 @@
                 if($x > "100" && $y=="1"){
                     echo "$x<br>";
                     echo "<br>the value of x is greater than 100, and y is equal to 1";
+                    }
                 }
-                
-                
-                
-                
-            }
 
-            statictest();
-            statictest();
-            
-            
-            
+                $names=array("Daisy","Melody","Katie");
 
+                $arraylength=count($names);
+                //array
+
+                for($x =0; $x<$arraylength; $x++){
+                    echo "$names[$x]<br>";
+                }
+                //print an array
+                
+                $ages=array("Daisy"=>"20","Melody"=>"17","Katie"=>"19");
+                //asoociative array: array where you use something other than the automatic numbers given as indexes
+                echo "<br>";
+                foreach($ages as $x =>$x_value){
+                    echo "key= ".$x.", age= ".$x_value;
+                    echo "<br>";
+                }
+                //foreach look, automatically goes through all the indexes
+
+                $gfs=array(array("Daisy","Amy"),array("Melody","Fall"),array("Katie","Unknown"));
+
+                $countx=count($gfs);
+                $county=count($gfs[1]);
+                echo "<br>";
+                for ($x=0; $x<$countx;$x++){
+                    for($y=0; $y<$county; $y++){
+                        echo $gfs[$x][$y]." <3 ";
+                    }
+                    echo "<br>";
+                }
+
+                echo "<br>";
+                krsort($ages);
+
+                foreach($ages as $x =>$x_value){
+                    echo "key= ".$x.", age= ".$x_value;
+                    echo "<br>";
+                }
 
             
             ?>
