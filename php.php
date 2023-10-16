@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php
+    //week 5
         $x = 5;
         function test(){
             $y = 5;
@@ -76,6 +77,9 @@
                     echo "<br>";
                 }
 
+                //week 6
+
+                
             
             ?>
 </body>
