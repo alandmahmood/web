@@ -18,7 +18,7 @@
               <div id="emailHelp" class="form-text">Only your Email from your university is accepted </div>
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <input name="checkbox" type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check if you want free candy(the white van up front)</label>
             </div>
             <button type="submit" class="btn btn-primary">Check</button>
@@ -29,12 +29,18 @@
     
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $email=$_POST['email'];
+
+        
     if ($email=="aland.aramf21@komar.edu.iq"){
         echo "wassup og get in";
     }
 
     else{
         echo "nah fam fr i ain' playing";
+    }
+
+    if (isset($_POST['checkbox'])){
+        echo "<br>ay yo get in the van lets have some good fun you know";
     }
     }
 
