@@ -2,6 +2,7 @@
 setcookie("user","amy",time()+(86400),"/");
 session_start();
 $_SESSION["color"]="pink";
+include "dbc.php";
 ?>
 <!-- the setcookie function has to be before the html tag but aslo be contained inside a php tag -->
 <!DOCTYPE html>
@@ -28,6 +29,25 @@ $_SESSION["color"]="pink";
         session_unset();
         session_destroy();
         // you can write the session name inside the parenthesies to destroy or unset only that value
+    
+        if(isset($_POST["stuid"])){
+          
+            $stuid=$_POST["stuid"];
+            $nname=$_POST["nname"];
+          $sql="UPDATE student SET `name`='$nname' WHERE id=$stuid";
+  
+          if(mysqli_query($conn, $sql)){
+            echo "Record updated successfully";
+            $delay = 5;
+              header("Refresh: $delay");
+          }
+  
+          else{
+            echo mysqli_error($conn);
+          }
+        }
     ?>
+
+    
 </body>
 </html>

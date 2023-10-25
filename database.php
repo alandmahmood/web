@@ -35,23 +35,78 @@ include "dbc.php";
             <label for="dob" class="form-label">Date of Birth</label><br>
             <input type="date" name="dob" class="form-control" id="dob">
             </div><br>
-            <button type="submit" class="btn btn-primary">Insert</button>
+            <button type="submit" value="submit "class="btn btn-primary">Insert</button>
           </form>
-
+</div>
+          <hr>
+          <div class="container">
+          <form method="post" action="cookie&session.php">
+            <div class="mb-3">
+              <label for="stuid" class="form-label">ID to be affected</label>
+              <input name= "stuid" type="number" class="form-control" id="stuid" >
+            </div><br>
+            <div class="mb-3">
+              <label for="nname" class="form-label">The new name</label>
+              <input name= "nname" type="text" class="form-control" id="nname" >
+            </div><br>
+            </div><br>
+            <button type="submit" value="submit "class="btn btn-primary">Replace</button>
+          </form>
+          </div>
           <?php
-          $name=$_POST['name'];
-          $email=$_POST['email'];
-          $gender=$_POST['gender'];
-          $dob=$_POST['dob'];
-          $sqlquery = "INSERT INTO student (`name`, email, gender, dob) VALUES
+          if (isset($_REQUEST["dob"])){
+            
+            $name=$_REQUEST["name"];
+          $email=$_REQUEST["email"];
+          $gender=$_REQUEST["gender"];
+          $dob=$_REQUEST["dob"];
+          
+          $sql= "INSERT INTO student(`name`, email, gender, dob) VALUES
           ('$name', '$email', '$gender', '$dob')";
 
-          if (mysql_query($conn,$sql)){
+          if (mysqli_query($conn,$sql)){
             echo "new record created successfully";
+            $delay = 5;
+            header("Refresh: $delay");
           }
           else {
             echo mysqli_error($conn);
           }
+
+          
+        }
+        else {
+          return;
+        }
+        
+        
+
+      //   if(isset($_POST["stuid"])){
+          
+      //     $stuid=$_POST["stuid"];
+      //     $nname=$_POST["nname"];
+      //   $sql="UPDATE student SET `name`='$nname' WHERE id=$stuid";
+
+      //   if(mysqli_query($conn, $sql)){
+      //     echo "Record updated successfully";
+      //     $delay = 5;
+      //       header("Refresh: $delay");
+      //   }
+
+      //   else{
+      //     echo mysqli_error($conn);
+      //   }
+      // }
+
+        // $sql = "SELECT * FROM student WHERE name LIKE 'Kochar%'";
+        // $result = mysqli_query($conn,$sql);
+
+        // if (mysqli_num_rows($result)>0){
+        //   while($row=mysqli_fetch_assoc($result)){
+        //     echo $row["name"]."<br>";
+        //   }
+        // }
+          
           ?>
 </div>
 </body>
