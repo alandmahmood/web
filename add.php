@@ -1,4 +1,6 @@
-<?php include "dbc.php" ?>
+<?php 
+
+require "dbc.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,8 +43,7 @@
               ('$name', '$email', '$gender')";
             
               if (mysqli_query($conn,$sql)){
-                echo "new record created successfully";
-                header("Refresh:5; url=idatabase.php");
+                header("location: idatabase.php");
               }
               else {
                 echo mysqli_error($conn);

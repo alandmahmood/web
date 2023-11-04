@@ -1,5 +1,12 @@
-<?php include "dbc.php";
-$id=$_GET["id"];
+<?php 
+
+require "dbc.php";
+if(isset($_GET["id"])){
+  $id=$_GET["id"];
+$query = "SELECT * from student where id='$id'"; 
+$result = mysqli_query($conn, $query) or die ( mysqli_error($conn));
+$row = mysqli_fetch_assoc($result);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,19 +19,19 @@ $id=$_GET["id"];
 </head>
 <body>
 <div class="container">
-<form method="post" action="?">
+<form method="post" action="edit.php">
             <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input name= "name" type="text" class="form-control" id="name" value="<?php mysqli_query($conn,"SELECT `name` FROM student WHERE id=$id"); ?>">
+            <input name="stuid" type="hidden" value="<?php echo $row['id'];?>" />
+              <label for="nname" class="form-label">Name</label>
+              <input name= "nname" type="text" class="form-control" id="nname" value="<?php echo $row['name']; ?>">
             </div><br>
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input name= "email" type="email" class="form-control" id="email" >
+              <label for="nemail" class="form-label">Email</label>
+              <input name= "nemail" type="email" class="form-control" id="nemail" value="<?php echo $row['email']; ?>" >
             </div><br>
             <div class="mb-3">
-              <label for="gender" class="form-label">Gender</label><br>
-              <select name="ngender" class="form-control" id="ngender">
-                <option value="" disabled selected>Choose an Option</option>
+              <label for="ngender" class="form-label">Gender</label><br>
+              <select name="ngender" class="form-control" id="ngender" value="<?php echo $row['gender']; ?>">
               <option value="Female">Female</option>
               <option value="Male">Male</option>
               <option value="Other">Other</option>
@@ -36,15 +43,15 @@ $id=$_GET["id"];
           <?php
 
           if(isset($_POST["edit"])){
+          $stuid=$_POST["stuid"];
           $nname=$_POST["nname"];
           $nemail=$_POST["nemail"];
           $ngender=$_POST["ngender"];
 
-        $sql="UPDATE student SET `name`='$nname',email='$nemail', gender='$ngender' WHERE id=$id";
+        $sql="UPDATE student SET `name`='$nname',email='$nemail', gender='$ngender' WHERE id=$stuid";
       
       if(mysqli_query($conn, $sql)){
-          echo "Record updated successfully";
-          header("Refresh:5; url=idatabase.php");
+          header("location: idatabase.php");
         }
       
         else{

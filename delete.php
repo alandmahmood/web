@@ -1,20 +1,16 @@
 
 <?php
-include "dbc.php";
-          if(isset($_POST["Edit"])){
-          $nname=$_POST["nname"];
-          $nemail=$_POST["nemail"];
-          $ngender=$_POST["ngender"];
 
-        $sql="UPDATE student SET `name`='$nname',email='$nemail', gender='$ngender' WHERE id=$id";
-      
-      if(mysqli_query($conn, $sql)){
-          echo "Record updated successfully";
-          header("Refresh:5; url=idatabase.php");
-        }
-      
-        else{
-          echo mysqli_error($conn);
-        }
-    }
+require "dbc.php";
+          if(isset($_GET["id"])){
+            $id=$_GET["id"];
+            $sql="DELETE FROM student WHERE id=$id";
+            if(mysqli_query($conn, $sql)){
+              header("location: idatabase.php");
+            }
+          
+            else{
+              echo mysqli_error($conn);
+            }
+          }
           ?>
