@@ -19,9 +19,8 @@ $row = mysqli_fetch_assoc($result);
 </head>
 <body>
 <div class="container">
-<form method="post" action="edit.php">
+<form method="post" action="edit.php<?php echo "?id=".$id?>">
             <div class="mb-3">
-            <input name="stuid" type="hidden" value="<?php echo $row['id'];?>" />
               <label for="nname" class="form-label">Name</label>
               <input name= "nname" type="text" class="form-control" id="nname" value="<?php echo $row['name']; ?>">
             </div><br>
@@ -31,7 +30,8 @@ $row = mysqli_fetch_assoc($result);
             </div><br>
             <div class="mb-3">
               <label for="ngender" class="form-label">Gender</label><br>
-              <select name="ngender" class="form-control" id="ngender" value="<?php echo $row['gender']; ?>">
+              <select name="ngender" class="form-control" id="ngender">
+              <option selected disabled><?php echo $row['gender']; ?></option>
               <option value="Female">Female</option>
               <option value="Male">Male</option>
               <option value="Other">Other</option>
@@ -43,12 +43,11 @@ $row = mysqli_fetch_assoc($result);
           <?php
 
           if(isset($_POST["edit"])){
-          $stuid=$_POST["stuid"];
           $nname=$_POST["nname"];
           $nemail=$_POST["nemail"];
           $ngender=$_POST["ngender"];
 
-        $sql="UPDATE student SET `name`='$nname',email='$nemail', gender='$ngender' WHERE id=$stuid";
+        $sql="UPDATE student SET `name`='$nname',email='$nemail', gender='$ngender' WHERE id=$id";
       
       if(mysqli_query($conn, $sql)){
           header("location: idatabase.php");
